@@ -1,18 +1,25 @@
+import {
+  GET_ALL_USERS,
+  ADD_USER,
+  UPDATE_USER,
+  DELETE_USER,
+} from "./actionTypes";
+
 const yodlrReducer = (state, { type, payload }) => {
   switch (type) {
-    case "get all users":
+    case GET_ALL_USERS:
       return {
         ...state,
         allUsers: payload,
       };
 
-    case "add user":
+    case ADD_USER:
       return {
         ...state,
         allUsers: [...state.allUsers, payload],
       };
 
-    case "delete user":
+    case DELETE_USER:
       const indexOfDeletedUser = state.allUsers.findIndex(
         (user) => user.id === payload.id
       );
@@ -22,7 +29,7 @@ const yodlrReducer = (state, { type, payload }) => {
         allUsers: [...state.allUsers],
       };
 
-    case "update user":
+    case UPDATE_USER:
       const indexOfUpdatedUser = state.allUsers.findIndex(
         (user) => user.id === payload.id
       );
