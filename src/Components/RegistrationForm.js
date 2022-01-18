@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+import YodlrApi from "../yodlrApi";
+import { useUserContext } from "../useYodlrContext";
 import "../CSS/RegistrationForm.css";
+import happyPic from "../happy.png";
 
 export default function RegistrationForm() {
   const initialFormState = {
@@ -8,12 +11,13 @@ export default function RegistrationForm() {
     lastName: "",
   };
 
+  const [, dispatch] = useUserContext();
   const [formState, setFormState] = useState(initialFormState);
   const [errorMessage, setErrorMessage] = useState("");
 
   const submissionsAreLongEnough = () => {
     const submissions = Array.from(Object.values(formState));
-    return submissions.every((submission) => submission.length >= 8);
+    return submissions.every((submission) => submission.length >= 1);
   };
 
   const isValidEmail = () => {
@@ -42,11 +46,14 @@ export default function RegistrationForm() {
     }));
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     if (acceptableSubmission()) {
-      // POST request here
-      // update global state
+      const result = await YodlrApi.createUser(formState);
+      dispatch({
+        type: "add user",
+        payload: result,
+      });
       errorMessage && setErrorMessage("");
     } else {
       handleErrors();
@@ -65,7 +72,6 @@ export default function RegistrationForm() {
         name="email"
         value={formState.email}
         onChange={handleChange}
-        required
       />
       <label htmlFor="firstName">First Name</label>
       <input
@@ -89,6 +95,7 @@ export default function RegistrationForm() {
       />
       {errorMessage.length ? <p>{errorMessage}</p> : null}
       <button type="submit">Submit</button>
+      <img src={happyPic} alt="happy" />
     </form>
   );
 }

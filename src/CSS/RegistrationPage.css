@@ -1,0 +1,26 @@
+.RegistrationPage {
+  display: flex;
+  width: 95%;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.RegistrationPage-msg {
+  width: 50%;
+  text-align: center;
+}
+
+.msg-sm {
+  font-size: 1.2rem;
+  color: gray;
+}
+
+.msg-lg {
+  font-size: 3rem;
+}
+
+.msg-md {
+  font-size: 2rem;
+}

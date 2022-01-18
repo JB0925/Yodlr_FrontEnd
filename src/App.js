@@ -1,23 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
+import { UserProvider } from "./useYodlrContext";
+import "./App.css";
+import Routes from "./Components/Routes";
+import Sidebar from "./Components/Sidebar";
 
 function App() {
+  const sidebarRef = useRef();
+
+  const toggleSidebar = () => {
+    sidebarRef.current.classList.toggle("sidebar-open");
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1 id="yodlr-logo">Yodlr!</h1>
+      <i id="burgerMenu" className="fas fa-bars" onClick={toggleSidebar}></i>
+      <div className="sidebar-parent" ref={sidebarRef}>
+        <Sidebar toggleSidebar={toggleSidebar} />
+      </div>
+      <UserProvider>
+        <Routes />
+      </UserProvider>
     </div>
   );
 }
