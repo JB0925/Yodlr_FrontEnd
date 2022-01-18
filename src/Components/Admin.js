@@ -2,9 +2,20 @@ import React, { useEffect, useCallback } from "react";
 import { useUserContext } from "../useYodlrContext";
 import YodlrApi from "../yodlrApi";
 import UserCard from "./UserCard";
-import { getUsers, updateUser } from "../actionCreators";
+import { getUsers } from "../actionCreators";
 import "../CSS/Admin.css";
 
+/**
+ * Admin
+ *
+ * This component houses the Admin page, where the
+ * admin can view all users and update them as needed.
+ *
+ * It displays several UserCard components, which have
+ * a stock headshot photo and all of the user's info on
+ * the card. There is also a button on the card that can be
+ * used to pull up a form to update the user.
+ */
 export default function Admin() {
   const [{ allUsers }, dispatch] = useUserContext();
 
@@ -17,16 +28,7 @@ export default function Admin() {
     getUserData();
   }, [dispatch, getUserData]);
 
-  const makeUpdatesToUser = async (id, userState) => {
-    if (userState !== "active") {
-      const updatedUser = await YodlrApi.updateUser(id);
-      dispatch(updateUser(updatedUser));
-    }
-  };
-
-  const showAllUsers = allUsers.map((user) => (
-    <UserCard {...user} updateUser={makeUpdatesToUser} />
-  ));
+  const showAllUsers = allUsers.map((user) => <UserCard user={user} />);
 
   return (
     <div className="container">

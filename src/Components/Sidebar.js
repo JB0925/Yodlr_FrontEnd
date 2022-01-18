@@ -2,6 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../CSS/Sidebar.css";
 
+// The slideout sidebar component. Contains links to
+// the routes in the application. Takes a "toggleSidebar"
+// prop, which is used to close the sidebar when one
+// of the links is clicked on.
 export default function Sidebar({ toggleSidebar }) {
   return (
     <div className="sidebar">

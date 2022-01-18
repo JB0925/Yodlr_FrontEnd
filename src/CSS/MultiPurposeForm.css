@@ -9,6 +9,7 @@ form {
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   width: 50%;
+  z-index: 1;
 }
 
 label {
@@ -38,8 +39,17 @@ form button:hover {
   opacity: 0.8;
 }
 
-form p {
+.error {
   color: tomato;
+}
+
+.success {
+  color: green;
+}
+
+.updateMsg {
+  font-size: 1.3rem;
+  font-weight: bold;
 }
 
 form img {
@@ -49,4 +59,8 @@ form img {
   top: 50%;
   right: 2%;
   transform: translateY(-50%);
+}
+
+.hide {
+  display: none;
 }

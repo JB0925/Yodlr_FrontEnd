@@ -2,6 +2,13 @@ import axios from "axios";
 
 const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3001";
 
+/**
+ * YodlrApi
+ *
+ * A class used to abstract much of the axios logic away from
+ * the components. Simply calls the backend api and returns the
+ * data from it.
+ */
 class YodlrApi {
   static async getAllUsers() {
     try {
@@ -30,13 +37,14 @@ class YodlrApi {
     }
   }
 
-  static async updateUser(id) {
+  static async updateUser(id, user) {
     try {
       const userToUpdate = await YodlrApi.getOneUser(id);
       if (!userToUpdate) throw new Error("User not found.");
 
-      userToUpdate.state = "active";
-      const result = await axios.put(`${BASE_URL}/users/${id}`, userToUpdate);
+      user.state = "active";
+      user.id = id;
+      const result = await axios.put(`${BASE_URL}/users/${id}`, user);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -45,7 +53,7 @@ class YodlrApi {
 
   static async deleteUser(user) {
     try {
-      const result = await axios.post(`${BASE_URL}/users/${user.id}`);
+      const result = await axios.delete(`${BASE_URL}/users/${user.id}`);
       return result.data;
     } catch (error) {
       console.log(error);

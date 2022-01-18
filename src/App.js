@@ -4,6 +4,13 @@ import "./App.css";
 import Routes from "./Components/Routes";
 import Sidebar from "./Components/Sidebar";
 
+/**
+ * App
+ *
+ * The main app component. Uses a ref to toggle the sidebar
+ * open and closed. Holds the routes for the registration page,
+ * and the admin page.
+ */
 function App() {
   const sidebarRef = useRef();
 

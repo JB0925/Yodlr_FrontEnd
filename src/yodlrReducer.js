@@ -5,6 +5,15 @@ import {
   DELETE_USER,
 } from "./actionTypes";
 
+/**
+ * yodlrReducer
+ *
+ * Reducer function passed into useReducer and manages the global state
+ * of users who are shown on and can be updated from the Admin page.
+ *
+ * TODO: The delete method is there, but is not currently implemented
+ * any further.
+ */
 const yodlrReducer = (state, { type, payload }) => {
   switch (type) {
     case GET_ALL_USERS:

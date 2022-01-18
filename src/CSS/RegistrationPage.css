@@ -24,3 +24,24 @@
 .msg-md {
   font-size: 2rem;
 }
+
+@media screen and (max-width: 1050px) {
+  form img {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .RegistrationPage {
+    flex-direction: column;
+    margin-top: 100px;
+  }
+
+  .RegistrationPage-msg {
+    width: auto;
+  }
+
+  form {
+    width: auto;
+  }
+}
