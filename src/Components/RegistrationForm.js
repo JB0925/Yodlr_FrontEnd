@@ -3,6 +3,7 @@ import YodlrApi from "../yodlrApi";
 import { useUserContext } from "../useYodlrContext";
 import "../CSS/RegistrationForm.css";
 import happyPic from "../happy.png";
+import { addUser } from "../actionCreators";
 
 export default function RegistrationForm() {
   const initialFormState = {
@@ -50,11 +51,8 @@ export default function RegistrationForm() {
     evt.preventDefault();
 
     if (acceptableSubmission()) {
-      const result = await YodlrApi.createUser(formState);
-      dispatch({
-        type: "add user",
-        payload: result,
-      });
+      const newUser = await YodlrApi.createUser(formState);
+      dispatch(addUser(newUser));
       errorMessage && setErrorMessage("");
     } else {
       handleErrors();

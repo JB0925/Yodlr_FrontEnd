@@ -18,6 +18,7 @@
   max-width: 500px;
   padding: 25px;
   margin: 0.3rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .user-photo {

@@ -26,10 +26,12 @@ const yodlrReducer = (state, { type, payload }) => {
       const indexOfUpdatedUser = state.allUsers.findIndex(
         (user) => user.id === payload.id
       );
-      state.allUsers.splice(indexOfUpdatedUser, 1);
+
+      state.allUsers[indexOfUpdatedUser] = payload;
+
       return {
         ...state,
-        allUsers: [...state.allUsers, payload],
+        allUsers: [...state.allUsers],
       };
 
     default:
