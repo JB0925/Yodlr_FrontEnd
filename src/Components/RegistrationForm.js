@@ -48,6 +48,7 @@ export default function RegistrationForm() {
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
+
     if (acceptableSubmission()) {
       const result = await YodlrApi.createUser(formState);
       dispatch({
@@ -72,6 +73,7 @@ export default function RegistrationForm() {
         name="email"
         value={formState.email}
         onChange={handleChange}
+        required
       />
       <label htmlFor="firstName">First Name</label>
       <input
