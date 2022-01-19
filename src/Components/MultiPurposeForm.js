@@ -64,6 +64,11 @@ const MultiPurposeForm = ({ toggleFormDisplay, width = null, user = null }) => {
     }));
   };
 
+  // If the "user" prop is not present, then the form is being
+  // used as a typical registration form by the end user. Else,
+  // it is being used by the Admin to update an existing user.
+  // Both actions require different API endpoints and different
+  // dispatches to useReducer, so we handle them here.
   const determineTypeOfSubmissionAndDispatch = async () => {
     if (!user) {
       const newUser = await YodlrApi.createUser(potentialNewUser);
@@ -74,6 +79,9 @@ const MultiPurposeForm = ({ toggleFormDisplay, width = null, user = null }) => {
     }
   };
 
+  // If the "user" prop is present, we set our success message as
+  // "Successfully updated user.". Otherwise, we are using the
+  // form for registration and set a registration message.
   const handleSuccessMessaging = () => {
     if (user) {
       setSuccessMessage("Successfully updated user!");
@@ -82,6 +90,13 @@ const MultiPurposeForm = ({ toggleFormDisplay, width = null, user = null }) => {
     }
   };
 
+  // Handling form submission. Checks to make sure that the form
+  // values are acceptable and, if so, determines which backend
+  // API endpoint to call. Handles error and success message setting
+  // as well, and resets the state back to initial values.
+  //
+  // If the form is being used to update, the "toggleFormDisplay"
+  // prop will close the form on submit.
   const handleSubmit = async (evt) => {
     evt.preventDefault();
 
