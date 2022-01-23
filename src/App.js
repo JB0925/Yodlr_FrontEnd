@@ -21,8 +21,17 @@ function App() {
   return (
     <div className="App">
       <h1 id="yodlr-logo">Yodlr!</h1>
-      <i id="burgerMenu" className="fas fa-bars" onClick={toggleSidebar}></i>
-      <div className="sidebar-parent" ref={sidebarRef}>
+      <i
+        id="burgerMenu"
+        data-testid="burgerButton"
+        className="fas fa-bars"
+        onClick={toggleSidebar}
+      ></i>
+      <div
+        className="sidebar-parent"
+        data-testid="sidebarParent"
+        ref={sidebarRef}
+      >
         <Sidebar toggleSidebar={toggleSidebar} />
       </div>
       <UserProvider>

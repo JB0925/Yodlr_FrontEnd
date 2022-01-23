@@ -52,7 +52,7 @@ const MultiPurposeForm = ({ toggleFormDisplay, width = null, user = null }) => {
     if (!isValidEmail()) setErrorMessage("Please enter a valid email address.");
     if (!submissionsAreLongEnough())
       setErrorMessage(
-        "One or more of your entries is less than eight characters long."
+        "One or more of your entries is less than one character long."
       );
   };
 

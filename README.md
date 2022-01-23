@@ -24,3 +24,7 @@ Then run `docker-compose down` to stop the running container when you are finish
 Clone both this repo and the [Yodlr-Take-Home](https://github.com/JB0925/yodlr-take-home) repo into a local directory.
 
 Then, start both servers by running `npm start` in both.
+
+## Tests
+
+Tests for the front end of this application can be run by cloning this repo and running `npm test`.

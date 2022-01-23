@@ -18,7 +18,7 @@ export default function UserCard({ user }) {
 
   return (
     <>
-      <div className="hide" ref={formRef}>
+      <div className="hide" data-testid="sidebar" ref={formRef}>
         <i
           id="closeBtn"
           className="fas fa-window-close"

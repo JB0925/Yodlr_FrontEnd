@@ -1,13 +1,12 @@
 import axios from "axios";
 
-// const BASE_URL = process.env.BASE_URL || "api:5000";
 const BASE_URL =
   process.env.REACT_APP_ENV === "production"
     ? process.env.BASE_URL
     : process.env.REACT_APP_ENV === "docker"
     ? "/users"
     : "http://127.0.0.1:5000/users";
-console.log(process.env.REACT_APP_ENV);
+
 /**
  * YodlrApi
  *
