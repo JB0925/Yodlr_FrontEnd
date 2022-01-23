@@ -28,7 +28,9 @@ export default function Admin() {
     getUserData();
   }, [dispatch, getUserData]);
 
-  const showAllUsers = allUsers.map((user) => <UserCard user={user} />);
+  const showAllUsers = allUsers.map((user) => (
+    <UserCard user={user} key={user.id} />
+  ));
 
   return (
     <div className="container">

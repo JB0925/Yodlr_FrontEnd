@@ -1,7 +1,13 @@
 import axios from "axios";
 
-const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3001";
-
+// const BASE_URL = process.env.BASE_URL || "api:5000";
+const BASE_URL =
+  process.env.REACT_APP_ENV === "production"
+    ? process.env.BASE_URL
+    : process.env.REACT_APP_ENV === "docker"
+    ? "/users"
+    : "http://127.0.0.1:5000/users";
+console.log(process.env.REACT_APP_ENV);
 /**
  * YodlrApi
  *
@@ -12,7 +18,7 @@ const BASE_URL = process.env.BASE_URL || "http://127.0.0.1:3001";
 class YodlrApi {
   static async getAllUsers() {
     try {
-      const result = await axios.get(`${BASE_URL}/users`);
+      const result = await axios.get(BASE_URL);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -21,7 +27,7 @@ class YodlrApi {
 
   static async createUser(user) {
     try {
-      const result = await axios.post(`${BASE_URL}/users`, user);
+      const result = await axios.post(BASE_URL, user);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -30,7 +36,7 @@ class YodlrApi {
 
   static async getOneUser(id) {
     try {
-      const result = await axios.get(`${BASE_URL}/users/${id}`);
+      const result = await axios.get(`${BASE_URL}/${id}`);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -44,7 +50,7 @@ class YodlrApi {
 
       user.state = "active";
       user.id = id;
-      const result = await axios.put(`${BASE_URL}/users/${id}`, user);
+      const result = await axios.put(`${BASE_URL}/${id}`, user);
       return result.data;
     } catch (error) {
       console.log(error);
@@ -53,7 +59,7 @@ class YodlrApi {
 
   static async deleteUser(user) {
     try {
-      const result = await axios.delete(`${BASE_URL}/users/${user.id}`);
+      const result = await axios.delete(`/users/${user.id}`);
       return result.data;
     } catch (error) {
       console.log(error);

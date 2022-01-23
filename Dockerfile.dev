@@ -1,4 +1,6 @@
 FROM node:16-alpine
+ARG REACT_APP_ENV
+ENV REACT_APP_ENV "docker"
 WORKDIR /app
 COPY ./package.json ./
 RUN npm install
